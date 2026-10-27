@@ -1,9 +1,85 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
-import {periodRange,parseAmount,convert,filterAndSort,validateFilters,toCsv,csvFilename,EMPTY_FILTERS} from '../src/utils/data.js';
-test('conversion and invalid input',()=>{assert.equal(convert(10,5.25),52.5);assert.equal(convert(0,5),0);assert.throws(()=>convert(10,0));for(const v of ['', '-1','abc','Infinity','1e5','1.000,00'])assert.equal(parseAmount(v),null);assert.equal(parseAmount('10,50'),10.5);assert.equal(parseAmount('1000000000001'),null);});
-test('all eight periods and calendar boundaries',()=>{const expected={'7d':'2026-10-21','15d':'2026-10-13','30d':'2026-09-28','3m':'2026-07-27','6m':'2026-04-27','1y':'2025-10-27','5y':'2021-10-27','10y':'2016-10-27'};for(const [p,from] of Object.entries(expected))assert.deepEqual(periodRange(p,'2026-10-27'),{from,to:'2026-10-27'});assert.equal(periodRange('1y','2024-02-29').from,'2023-02-28');assert.equal(periodRange('3m','2024-05-31').from,'2024-02-29');assert.throws(()=>periodRange('2d'));});
-const rows=[{date:'2024-05-01',base:'EUR',quote:'USD',rate:1.1},{date:'2024-05-03',base:'EUR',quote:'USD',rate:1.3},{date:'2024-05-02',base:'EUR',quote:'USD',rate:1.2}];
-test('combined inclusive filters and immutable sorting',()=>{const original=structuredClone(rows);assert.deepEqual(filterAndSort(rows,{from:'2024-05-02',to:'2024-05-03',min:'1.2',max:'1.2'}),[rows[2]]);assert.deepEqual(filterAndSort(rows,EMPTY_FILTERS,{key:'rate',direction:'asc'}).map(r=>r.rate),[1.1,1.2,1.3]);assert.deepEqual(rows,original);assert.equal(filterAndSort(rows,{...EMPTY_FILTERS,min:'2'}).length,0);assert.equal(filterAndSort(rows,EMPTY_FILTERS).length,3);});
-test('invalid filter ranges',()=>{assert.ok(validateFilters({...EMPTY_FILTERS,min:'2',max:'1'}));assert.ok(validateFilters({...EMPTY_FILTERS,from:'2025-01-02',to:'2025-01-01'}));assert.ok(validateFilters({...EMPTY_FILTERS,min:'NaN'}));});
-test('CSV contains only selected rows with header BOM and escaping',()=>{const selected=filterAndSort(rows,{...EMPTY_FILTERS,min:'1.2'});const csv=toCsv(selected);assert.ok(csv.startsWith('\uFEFF"Data"'));assert.equal(csv.split('\r\n').length,3);assert.ok(!csv.includes('2024-05-01'));assert.ok(csv.includes('"1,3"'));assert.equal(csvFilename(selected),'hermes_EUR_USD_2024-05-02_2024-05-03.csv');assert.throws(()=>toCsv([]));assert.ok(toCsv([{...rows[0],base:'A"B'}]).includes('"A""B"'));});
+import test from "node:test";
+import assert from "node:assert/strict";
+import {
+  periodRange,
+  parseAmount,
+  convert,
+  filterAndSort,
+  validateFilters,
+  toCsv,
+  csvFilename,
+  EMPTY_FILTERS,
+} from "../src/utils/data.js";
+test("conversion and invalid input", () => {
+  assert.equal(convert(10, 5.25), 52.5);
+  assert.equal(convert(0, 5), 0);
+  assert.throws(() => convert(10, 0));
+  for (const v of ["", "-1", "abc", "Infinity", "1e5", "1.000,00"])
+    assert.equal(parseAmount(v), null);
+  assert.equal(parseAmount("10,50"), 10.5);
+  assert.equal(parseAmount("1000000000001"), null);
+});
+test("all eight periods and calendar boundaries", () => {
+  const expected = {
+    "7d": "2026-10-21",
+    "15d": "2026-10-13",
+    "30d": "2026-09-28",
+    "3m": "2026-07-27",
+    "6m": "2026-04-27",
+    "1y": "2025-10-27",
+    "5y": "2021-10-27",
+    "10y": "2016-10-27",
+  };
+  for (const [p, from] of Object.entries(expected))
+    assert.deepEqual(periodRange(p, "2026-10-27"), { from, to: "2026-10-27" });
+  assert.equal(periodRange("1y", "2024-02-29").from, "2023-02-28");
+  assert.equal(periodRange("3m", "2024-05-31").from, "2024-02-29");
+  assert.throws(() => periodRange("2d"));
+});
+const rows = [
+  { date: "2024-05-01", base: "EUR", quote: "USD", rate: 1.1 },
+  { date: "2024-05-03", base: "EUR", quote: "USD", rate: 1.3 },
+  { date: "2024-05-02", base: "EUR", quote: "USD", rate: 1.2 },
+];
+test("combined inclusive filters and immutable sorting", () => {
+  const original = structuredClone(rows);
+  assert.deepEqual(
+    filterAndSort(rows, {
+      from: "2024-05-02",
+      to: "2024-05-03",
+      min: "1.2",
+      max: "1.2",
+    }),
+    [rows[2]],
+  );
+  assert.deepEqual(
+    filterAndSort(rows, EMPTY_FILTERS, { key: "rate", direction: "asc" }).map(
+      (r) => r.rate,
+    ),
+    [1.1, 1.2, 1.3],
+  );
+  assert.deepEqual(rows, original);
+  assert.equal(filterAndSort(rows, { ...EMPTY_FILTERS, min: "2" }).length, 0);
+  assert.equal(filterAndSort(rows, EMPTY_FILTERS).length, 3);
+});
+test("invalid filter ranges", () => {
+  assert.ok(validateFilters({ ...EMPTY_FILTERS, min: "2", max: "1" }));
+  assert.ok(
+    validateFilters({ ...EMPTY_FILTERS, from: "2025-01-02", to: "2025-01-01" }),
+  );
+  assert.ok(validateFilters({ ...EMPTY_FILTERS, min: "NaN" }));
+});
+test("CSV contains only selected rows with header BOM and escaping", () => {
+  const selected = filterAndSort(rows, { ...EMPTY_FILTERS, min: "1.2" });
+  const csv = toCsv(selected);
+  assert.ok(csv.startsWith('\uFEFF"Data"'));
+  assert.equal(csv.split("\r\n").length, 3);
+  assert.ok(!csv.includes("2024-05-01"));
+  assert.ok(csv.includes('"1,3"'));
+  assert.equal(
+    csvFilename(selected),
+    "hermes_EUR_USD_2024-05-02_2024-05-03.csv",
+  );
+  assert.throws(() => toCsv([]));
+  assert.ok(toCsv([{ ...rows[0], base: 'A"B' }]).includes('"A""B"'));
+});

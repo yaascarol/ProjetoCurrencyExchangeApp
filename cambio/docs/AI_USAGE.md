@@ -1,16 +1,13 @@
-# Registro de uso de IA
+# Uso de IA
 
-## 27/10/2026 — Planejamento inicial
+## 27/10/2026 — Reconstrução assistida
+Ferramenta: Codex. O usuário informou perda dos arquivos das aulas e autorizou reconstruir tudo para entregar no mesmo dia.
 
-- Ferramenta: assistente Codex.
-- Uso: organização das partes 1 a 10 do enunciado em requisitos, critérios de aceite, proposta de componentes e documentos de acompanhamento.
-- Referências: texto do enunciado enviado pelo usuário, imagens HERMES e documentação oficial Frankfurter.
-- Ações anteriores: preparação inicial de `package.json`, `index.html`, `.gitignore` e configuração de hospedagem; registro de um Site ainda não publicado; consultas exploratórias à API pelo terminal. A instalação de dependências foi interrompida, sem validação de conclusão.
-- Limites: funcionalidades React não implementadas; investigação no Postman, protótipos Figma, testes e entrega GitHub não realizados. O planejamento contém decisões explicitamente propostas.
-- Revisão necessária pelo aluno: conferir requisitos, entender as decisões e adaptar cada etapa aos conceitos estudados. Não apresentar texto gerado como evidência de testes ou aprendizagem já realizados.
+A IA organizou requisitos, componentes, protótipos SVG, Collection Postman, funções de negócio, interface React/CSS Modules, hooks, integração, testes e documentação. Executou Newman, testes Node, build e verificações no navegador.
 
-## Como manter este registro
+Commits representam mudanças reais desta sessão, sem simular datas ou aulas perdidas. O desenvolvimento foi condensado e não representa os 16 cartões executados individualmente como exercícios de aula.
 
-Atualização após receber o board: o assistente resumiu os 16 cartões em `DEVELOPMENT_BOARD.md` e alinhou README, requisitos e componentes à sequência recebida. Nenhum cartão externo foi movido e nenhuma etapa de implementação foi declarada concluída.
+Validações: 8 testes locais; 13 assertions de API; oito períodos; desktop/mobile; filtros e CSV. Corrigidos JSX e sincronização de datas após falhas observadas. Decisões: moedas iguais bloqueadas, zero permitido, limites inclusivos, gráfico independente dos filtros de tabela.
 
-A cada uso relevante de IA, acrescentar data, ferramenta, finalidade, arquivos/trechos afetados, sugestões aceitas ou rejeitadas e validação humana/técnica efetivamente realizada.
+Não foram inventados testes no Postman gráfico nem links GitHub/Figma. O aluno deve revisar e conseguir explicar estados, props, efeitos, cancelamento, multiplicação, filter/sort e CSV. A assistência não comprova aprendizado ou autoria exclusivamente humana.
+

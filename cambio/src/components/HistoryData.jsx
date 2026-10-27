@@ -1,17 +1,237 @@
-import {useState} from 'react';
-import {Download,ArrowDownUp,RotateCcw,ChevronLeft,ChevronRight,SlidersHorizontal} from 'lucide-react';
-import {EMPTY_FILTERS,filterAndSort,validateFilters,downloadCsv,number,dateLabel} from '../utils/data.js';
-import QueryState from './QueryState.jsx';
-import s from './HistoryData.module.css';
-export default function HistoryData({query}) {
- const [filters,setFilters]=useState({...EMPTY_FILTERS}),[sort,setSort]=useState({key:'date',direction:'desc'}),[page,setPage]=useState(1),[notice,setNotice]=useState('');
- const error=validateFilters(filters),rows=filterAndSort(query.data||[],filters,sort),pages=Math.max(1,Math.ceil(rows.length/10)),current=Math.min(page,pages),visible=rows.slice((current-1)*10,current*10);
- const change=(key,value)=>{setFilters(f=>({...f,[key]:value}));setPage(1);setNotice('');};
- const clear=()=>{setFilters({...EMPTY_FILTERS});setPage(1);setNotice('');};
- const order=key=>{setSort({key,direction:sort.key===key&&sort.direction==='asc'?'desc':'asc'});setPage(1);};
- return <section className={s.panel} aria-labelledby="data-title"><div className={s.heading}><div><h2 id="data-title"><span>03</span> Explore os dados</h2><p>Filtre, compare e leve sua análise com você.</p></div><button className={s.export} disabled={!rows.length||!!error||query.status!=='success'} onClick={()=>{try{downloadCsv(rows);setNotice(`${rows.length} registros exportados.`);}catch(e){setNotice(e.message);}}}><Download size={15}/> Exportar CSV</button></div>
- <div className={s.filters}><span className={s.filterIcon}><SlidersHorizontal size={17}/></span><label>Data inicial<input type="date" aria-label="Data inicial" value={filters.from} onChange={e=>change('from',e.target.value)}/></label><label>Data final<input type="date" aria-label="Data final" value={filters.to} onChange={e=>change('to',e.target.value)}/></label><label>Cotação mínima<input type="number" min="0" step="any" placeholder="Sem mínimo" value={filters.min} onChange={e=>change('min',e.target.value)}/></label><label>Cotação máxima<input type="number" min="0" step="any" placeholder="Sem máximo" value={filters.max} onChange={e=>change('max',e.target.value)}/></label><button onClick={clear} className={s.clear}><RotateCcw size={13}/> Limpar</button></div>
- {error&&<p role="alert" className={s.error}>{error}</p>}<div className={s.count}><span><strong>{rows.length}</strong> registros encontrados</span><span>Filtros aplicados à tabela e ao CSV</span></div>
- {query.status!=='success'?<QueryState status={query.status} message={query.error} onRetry={query.retry}/>:!rows.length?<QueryState status="empty"/>:<><div className={s.scroll}><table><thead><tr><th aria-sort={sort.key==='date'?(sort.direction==='asc'?'ascending':'descending'):'none'}><button onClick={()=>order('date')}>Data <ArrowDownUp size={12}/>{sort.key==='date'?(sort.direction==='asc'?' ↑':' ↓'):''}</button></th><th>Origem</th><th>Destino</th><th className={s.numeric} aria-sort={sort.key==='rate'?(sort.direction==='asc'?'ascending':'descending'):'none'}><button onClick={()=>order('rate')}>Cotação <ArrowDownUp size={12}/>{sort.key==='rate'?(sort.direction==='asc'?' ↑':' ↓'):''}</button></th></tr></thead><tbody>{visible.map(r=><tr key={`${r.date}-${r.base}-${r.quote}`}><td>{dateLabel(r.date)}</td><td><span className={s.code}>{r.base}</span></td><td><span className={s.code}>{r.quote}</span></td><td className={s.numeric}>{number(r.rate,6)}</td></tr>)}</tbody></table></div><div className={s.pagination}><span>Exibindo {(current-1)*10+1}–{Math.min(current*10,rows.length)} de {rows.length}</span><div><button disabled={current===1} aria-label="Página anterior" onClick={()=>setPage(current-1)}><ChevronLeft size={15}/></button><span>{current} / {pages}</span><button disabled={current===pages} aria-label="Próxima página" onClick={()=>setPage(current+1)}><ChevronRight size={15}/></button></div></div></>}
- {notice&&<p className={s.notice} role="status">{notice}</p>}</section>;
+import { useState } from "react";
+import {
+  Download,
+  ArrowDownUp,
+  RotateCcw,
+  ChevronLeft,
+  ChevronRight,
+  SlidersHorizontal,
+} from "lucide-react";
+import {
+  EMPTY_FILTERS,
+  filterAndSort,
+  validateFilters,
+  downloadCsv,
+  number,
+  dateLabel,
+} from "../utils/data.js";
+import QueryState from "./QueryState.jsx";
+import s from "./HistoryData.module.css";
+export default function HistoryData({ query }) {
+  const [filters, setFilters] = useState({ ...EMPTY_FILTERS }),
+    [sort, setSort] = useState({ key: "date", direction: "desc" }),
+    [page, setPage] = useState(1),
+    [notice, setNotice] = useState("");
+  const error = validateFilters(filters),
+    rows = filterAndSort(query.data || [], filters, sort),
+    pages = Math.max(1, Math.ceil(rows.length / 10)),
+    current = Math.min(page, pages),
+    visible = rows.slice((current - 1) * 10, current * 10);
+  const change = (key, value) => {
+    setFilters((f) => ({ ...f, [key]: value }));
+    setPage(1);
+    setNotice("");
+  };
+  const clear = () => {
+    setFilters({ ...EMPTY_FILTERS });
+    setPage(1);
+    setNotice("");
+  };
+  const order = (key) => {
+    setSort({
+      key,
+      direction: sort.key === key && sort.direction === "asc" ? "desc" : "asc",
+    });
+    setPage(1);
+  };
+  return (
+    <section className={s.panel} aria-labelledby="data-title">
+      <div className={s.heading}>
+        <div>
+          <h2 id="data-title">
+            <span>03</span> Explore os dados
+          </h2>
+          <p>Filtre, compare e leve sua análise com você.</p>
+        </div>
+        <button
+          className={s.export}
+          disabled={!rows.length || !!error || query.status !== "success"}
+          onClick={() => {
+            try {
+              downloadCsv(rows);
+              setNotice(`${rows.length} registros exportados.`);
+            } catch (e) {
+              setNotice(e.message);
+            }
+          }}
+        >
+          <Download size={15} /> Exportar CSV
+        </button>
+      </div>
+      <div className={s.filters}>
+        <span className={s.filterIcon}>
+          <SlidersHorizontal size={17} />
+        </span>
+        <label>
+          Data inicial
+          <input
+            type="date"
+            aria-label="Data inicial"
+            value={filters.from}
+            onInput={(e) => change("from", e.currentTarget.value)}
+            onChange={(e) => change("from", e.target.value)}
+          />
+        </label>
+        <label>
+          Data final
+          <input
+            type="date"
+            aria-label="Data final"
+            value={filters.to}
+            onInput={(e) => change("to", e.currentTarget.value)}
+            onChange={(e) => change("to", e.target.value)}
+          />
+        </label>
+        <label>
+          Cotação mínima
+          <input
+            type="number"
+            min="0"
+            step="any"
+            placeholder="Sem mínimo"
+            value={filters.min}
+            onChange={(e) => change("min", e.target.value)}
+          />
+        </label>
+        <label>
+          Cotação máxima
+          <input
+            type="number"
+            min="0"
+            step="any"
+            placeholder="Sem máximo"
+            value={filters.max}
+            onChange={(e) => change("max", e.target.value)}
+          />
+        </label>
+        <button onClick={clear} className={s.clear}>
+          <RotateCcw size={13} /> Limpar
+        </button>
+      </div>
+      {error && (
+        <p role="alert" className={s.error}>
+          {error}
+        </p>
+      )}
+      <div className={s.count}>
+        <span>
+          <strong>{rows.length}</strong> registros encontrados
+        </span>
+        <span>Filtros aplicados à tabela e ao CSV</span>
+      </div>
+      {query.status !== "success" ? (
+        <QueryState
+          status={query.status}
+          message={query.error}
+          onRetry={query.retry}
+        />
+      ) : !rows.length ? (
+        <QueryState status="empty" />
+      ) : (
+        <>
+          <div className={s.scroll}>
+            <table>
+              <thead>
+                <tr>
+                  <th
+                    aria-sort={
+                      sort.key === "date"
+                        ? sort.direction === "asc"
+                          ? "ascending"
+                          : "descending"
+                        : "none"
+                    }
+                  >
+                    <button onClick={() => order("date")}>
+                      Data <ArrowDownUp size={12} />
+                      {sort.key === "date"
+                        ? sort.direction === "asc"
+                          ? " ↑"
+                          : " ↓"
+                        : ""}
+                    </button>
+                  </th>
+                  <th>Origem</th>
+                  <th>Destino</th>
+                  <th
+                    className={s.numeric}
+                    aria-sort={
+                      sort.key === "rate"
+                        ? sort.direction === "asc"
+                          ? "ascending"
+                          : "descending"
+                        : "none"
+                    }
+                  >
+                    <button onClick={() => order("rate")}>
+                      Cotação <ArrowDownUp size={12} />
+                      {sort.key === "rate"
+                        ? sort.direction === "asc"
+                          ? " ↑"
+                          : " ↓"
+                        : ""}
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {visible.map((r) => (
+                  <tr key={`${r.date}-${r.base}-${r.quote}`}>
+                    <td>{dateLabel(r.date)}</td>
+                    <td>
+                      <span className={s.code}>{r.base}</span>
+                    </td>
+                    <td>
+                      <span className={s.code}>{r.quote}</span>
+                    </td>
+                    <td className={s.numeric}>{number(r.rate, 6)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className={s.pagination}>
+            <span>
+              Exibindo {(current - 1) * 10 + 1}–
+              {Math.min(current * 10, rows.length)} de {rows.length}
+            </span>
+            <div>
+              <button
+                disabled={current === 1}
+                aria-label="Página anterior"
+                onClick={() => setPage(current - 1)}
+              >
+                <ChevronLeft size={15} />
+              </button>
+              <span>
+                {current} / {pages}
+              </span>
+              <button
+                disabled={current === pages}
+                aria-label="Próxima página"
+                onClick={() => setPage(current + 1)}
+              >
+                <ChevronRight size={15} />
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+      {notice && (
+        <p className={s.notice} role="status">
+          {notice}
+        </p>
+      )}
+    </section>
+  );
 }

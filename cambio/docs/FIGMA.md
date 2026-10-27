@@ -1,17 +1,19 @@
-# Protótipos Figma
+# Protótipos e Figma
 
-Status: pendente. Nenhum arquivo Figma foi criado ou validado. As imagens fornecidas são referências visuais, não evidência de entrega no Figma.
+Criados antes da implementação, com base nos anexos HERMES:
+- [Wireframe desktop](prototypes/wireframe-desktop.svg)
+- [Wireframe mobile](prototypes/wireframe-mobile.svg)
+- [Média fidelidade desktop](prototypes/prototype-desktop.svg)
+- [Média fidelidade mobile](prototypes/prototype-mobile.svg)
+- [Loading, erro e vazio](prototypes/states.svg)
 
-## Entregas previstas
+Valores ilustrativos identificados nos protótipos. A aplicação usa dados reais.
 
-- [ ] Link acessível ao arquivo Figma.
-- [ ] Wireframe de baixa fidelidade.
-- [ ] Protótipo de média fidelidade.
-- [ ] Versão desktop.
-- [ ] Adaptação mobile.
-- [ ] Estados de loading, erro e ausência de dados.
-- [ ] Evidências exportadas e identificação das telas/fluxos.
+**Arquivo/link Figma pendente de acesso à conta.** SVGs não são apresentados como entrega já criada no Figma.
 
-Referências recebidas: wireframe HERMES e Design Guide HERMES. Direção e pontos ainda não confirmados estão em [REQUIREMENTS.md](REQUIREMENTS.md).
+Para concluir: criar arquivo de design; arrastar os cinco SVGs para o canvas; organizar páginas Wireframes, Protótipos e Estados; revisar layers/textos e conexões de interação; compartilhar e inserir o link aqui.
 
-Adicionar links e evidências apenas após a criação e conferência dos protótipos.
+Paleta: #172A24, #175F49, #F6F7F5, #FFFFFF, #DCE4DF, #DCECE3. Inter com fallback de sistema. Mobile empilha conversor, quebra filtros e permite rolagem somente da tabela quando necessária. Sem gradientes. Idiomas adicionais não foram implementados.
+
+Capturas da aplicação: [desktop](screenshots/desktop.png), [mobile](screenshots/mobile.png). Não substituem o arquivo Figma.
+

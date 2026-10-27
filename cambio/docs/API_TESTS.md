@@ -1,22 +1,29 @@
-# Investigação e testes da API no Postman
+# Investigação Frankfurter v2
 
-Status: pendente. Nenhum teste foi executado no Postman. Consultas exploratórias anteriores pelo terminal e leitura da documentação não substituem esta etapa.
+Executada em 27/10/2026 **via Newman, executor de Collections Postman**, antes da integração React. A interface gráfica do Postman não foi utilizada.
 
-O roteiro inicial e os endpoints Frankfurter v2 estão em [REQUIREMENTS.md](REQUIREMENTS.md). Executar a investigação antes de integrar a API ao React.
+**7 requisições, 13 assertions, zero falhas.**
 
-## Casos previstos
+| Consulta (GET; base https://api.frankfurter.dev/v2) | Resultado |
+| --- | --- |
+| /currencies | 200; lista com iso_code, name e metadados |
+| /rate/EUR/USD | 200; objeto date/base/quote/rate |
+| /rates?from=2024-05-01&to=2024-05-31&base=EUR&quotes=USD | 200; série em lista |
+| /rate/INVALID/USD | 422; invalid currency: INVALID |
+| /rates?date=invalid&base=EUR&quotes=USD | 422; invalid date |
+| /rate/EUR/USD?date=2024-05-05 | 200; date 2024-05-05 e rate 1.0739 |
+| /rates?from=2024-05-04&to=2024-05-05&base=EUR&quotes=USD | 200; observações nos dois dias |
 
-| Caso | Objetivo | Status |
-| --- | --- | --- |
-| Moedas disponíveis | Identificar estrutura da lista e códigos | Não executado |
-| Cotação EUR/USD | Conferir taxa e data efetiva | Não executado |
-| Histórico de maio/2024 | Conferir parâmetros e série retornada | Não executado |
-| Datas sem publicação | Comparar consulta pontual, intervalo e dias próximos | Não executado |
-| Parâmetros inválidos | Registrar status HTTP e corpo de erro | Não executado |
-| Oito períodos do produto | Verificar cobertura e comportamento de séries longas | Não executado |
+Objeto observado: {"date":"2026-10-27","base":"EUR","quote":"USD","rate":1.1186}.
+A aplicação calcula valor × rate. base é origem; quotes limita destino; from/to delimitam intervalo.
 
-Para cada execução registrar: data, método, URL/parâmetros, resultado esperado, status HTTP observado, amostra do JSON, interpretação, evidência e conclusão.
+## Datas sem publicação
+Não presumir que todo fim de semana fica sem dados: v2 retornou observações nos dias testados. Disponibilidade varia por fonte/par. A aplicação conserva datas reais, não fabrica observações e filtra resultados fora do intervalo. Não foi identificado um caso real sem publicação nesta execução; lista vazia foi testada com resposta controlada no serviço.
 
-## Collection
+## Reprodução e evidência
+Importar [Collection JSON](postman/Frankfurter.postman_collection.json) no Postman e executar, ou usar `npm run test:api`. [results.json](postman/results.json) contém respostas, status e assertions reais.
 
-Pendente: exportar a Collection do Postman em JSON para `docs/postman/`, conferir a importação e vincular aqui o arquivo real. Não registrar respostas presumidas como resultados observados.
+Oito períodos USD/BRL também verificados no navegador: 7, 15, 30, 93, 184, 366, 1827 e 3653 registros, respectivamente, com término em 27/10/2026. As quantidades não são constantes universais.
+
+Documentação oficial: https://frankfurter.dev/
+

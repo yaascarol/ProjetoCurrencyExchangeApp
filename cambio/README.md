@@ -1,37 +1,62 @@
-# Currency Exchange App
+# HERMES — Currency Exchange
 
-Projeto educacional individual de SPA React para conversão e análise histórica de moedas usando a API Frankfurter v2.
+SPA React para conversão, histórico e exportação de moedas usando Frankfurter v2. Reconstruída em 27/10/2026 após perda dos arquivos anteriores, com assistência de IA. Os commits registram esta reconstrução.
 
-**Status: planejamento. A aplicação ainda não está funcional.** O enunciado foi recebido até a parte 10 e os 16 cartões do Board de Desenvolvimento foram registrados. A estrutura inicial foi preparada, mas as funcionalidades não foram implementadas e a instalação/build não foram validados.
+![Desktop](docs/screenshots/desktop.png)
 
-## Funcionalidades previstas
+## Funcionalidades
+Conversão automática, seleção/inversão de moedas, taxa e data efetiva; gráfico nos oito períodos; tabela paginada; filtros inclusivos por datas e cotação, combinados; ordenação por data/cotação; contagem; limpeza; CSV de todos os registros filtrados; loading, erro, nova tentativa e vazio. Interface responsiva em português.
 
-Conversão e inversão de moedas; taxa e data efetiva; histórico em oito períodos; gráfico e tabela; filtros combinados por data/cotação; ordenação; exportação CSV dos registros filtrados.
+## Tecnologias
+React 19, JavaScript/JSX, Vite 7, CSS Modules, Recharts, Lucide React, fetch/async/await, useState, useEffect e custom hook. Newman executa a Collection Postman. Sem back-end próprio, banco ou chave de API.
 
-## Tecnologias previstas
+## Instalação
+Node.js 22.12+ (validado com 24.19.0) e npm. Se clonar o repositório com a pasta cambio, entrar nela primeiro:
 
-React, JSX, Vite, CSS Modules, fetch/async/await, hooks e biblioteca de gráficos a definir. Postman para investigação da API; Git e GitHub para evolução incremental.
+```sh
+cd cambio
+npm ci
+npm run dev
+```
+
+Abrir o endereço exibido. Porta alternativa: `npm run dev -- --port 5187`.
+
+```sh
+npm test
+npm run test:api
+npm run build
+npm run preview
+```
+
+test roda testes locais sem rede; test:api executa a Collection com internet; build gera dist; preview serve o build. A API é consultada pelo navegador e exige conexão.
+
+## Arquitetura
+- App: par e período compartilhados (lifting state up).
+- components: Converter/CurrencySelect, History, HistoryData, QueryState.
+- hooks/useFrankfurter: consultas, estados, cache de cinco minutos, cancelamento e retry.
+- services/frankfurter: fetch, validação HTTP/JSON.
+- utils/data: conversão, datas, filtros, sort, CSV e formatação.
+- constants/periods: oito períodos.
+- tests: testes Node de funções e serviço.
+
+Valor fica no conversor; filtros/ordenação em HistoryData. Resultados são derivados, não estados duplicados. Tabela pagina em 10 linhas; CSV inclui todas as páginas filtradas. Gráfico mantém o período completo.
 
 ## Documentação
+- [Requisitos](docs/REQUIREMENTS.md)
+- [Componentes](docs/COMPONENTS.md)
+- [Figma](docs/FIGMA.md)
+- [API e Postman](docs/API_TESTS.md)
+- [Testes](docs/FUNCTION_TESTS.md)
+- [Collection](docs/postman/Frankfurter.postman_collection.json)
+- [Resultado Newman](docs/postman/results.json)
+- [Uso de IA](docs/AI_USAGE.md)
+- [Board](docs/DEVELOPMENT_BOARD.md)
+- [Entrega](docs/DELIVERY.md)
 
-- [Requisitos e critérios de aceite](docs/REQUIREMENTS.md)
-- [Componentes e arquitetura proposta](docs/COMPONENTS.md)
-- [Protótipos Figma — pendentes](docs/FIGMA.md)
-- [Investigação Postman — pendente](docs/API_TESTS.md)
-- [Testes de funções — pendentes](docs/FUNCTION_TESTS.md)
-- [Registro de uso de IA](docs/AI_USAGE.md)
-- [Board de Desenvolvimento](docs/DEVELOPMENT_BOARD.md)
+![Mobile](docs/screenshots/mobile.png)
 
-## Instalação e execução
+## Decisões e limites
+Moedas iguais bloqueadas. Valor de 0 a 1 trilhão, até oito casas decimais, ponto/vírgula decimal e sem separadores de milhar. CSV UTF-8 BOM, separador ponto e vírgula, decimal com vírgula, precisão recebida. Taxas diárias de referência sem impostos/tarifas/spread. Disponibilidade histórica varia por par/fonte; não se geram dados fictícios em falhas.
 
-Guia reproduzível pendente da implementação e validação. O `package.json` inicial prevê scripts `dev`, `build`, `preview` e `test`, mas isso não comprova que funcionem no estado atual. Documentar pré-requisitos, instalação, comandos e resultados após verificar o projeto.
+Protótipos SVG importáveis não substituem o arquivo Figma. Repositório GitHub público e link Figma ainda dependem das contas do usuário. Branches locais main/dev e commits reais, sem reconstrução fictícia de aulas passadas.
 
-## Arquitetura e imagens
-
-A arquitetura proposta consta em `docs/COMPONENTS.md`. Capturas reais da aplicação e evidências Figma serão adicionadas após sua produção; nenhuma imagem é apresentada como implementação concluída.
-
-## Desenvolvimento incremental
-
-Seguir a aula e o board: aplicar conceito → testar → registrar commit pequeno e semântico → atualizar cartão. Fluxo Git sugerido: `main` estável, `dev` integração e branches específicas quando necessário. Não há prazos intermediários obrigatórios.
-
-Repositório público, Collection Postman exportada e aplicação publicada permanecem pendentes.
