@@ -5,7 +5,7 @@ Os 16 cartões originais foram recebidos com status A fazer. Nenhum cartão exte
 | Etapa | Situação real |
 | --- | --- |
 | 1. Requisitos | Documento consolidado e primeiro commit registrado |
-| 2. Protótipos | SVGs desktop/mobile e estados criados antes da aplicação; arquivo Figma pendente |
+| 2. Protótipos | SVGs desktop/mobile e estados criados antes da aplicação; importados no Figma com link em FIGMA.md |
 | 3. JSX | Interface implementada; não houve uma entrega estática separada como exercício de aula |
 | 4. Componentes | Implementados e descritos em COMPONENTS.md |
 | 5. Props | Aplicadas a componentes e listas |
@@ -19,10 +19,11 @@ Os 16 cartões originais foram recebidos com status A fazer. Nenhum cartão exte
 | 13. Tabela/filtros/sort | Implementados; filtros combinados e ordenação verificados |
 | 14. CSV | Download conferido no disco contra duas linhas filtradas |
 | 15. Revisão | Testes de funções, API, desktop/mobile e correções documentados; limites em FUNCTION_TESTS.md |
-| 16. Entrega | Arquivos locais prontos; GitHub público, link Figma e revisão por segunda pessoa pendentes |
+| 16. Entrega | Arquivos locais, GitHub público e Figma disponíveis; revisão por segunda pessoa pendente |
 
 ## Processo e evidências
 
 Commits pequenos e semânticos registram mudanças reais. Branches main/dev. Não foram recriados commits históricos perdidos. Rever o conteúdo das aulas e conseguir explicar o código continua sendo responsabilidade do aluno.
 
 Consultar API_TESTS.md, FUNCTION_TESTS.md, AI_USAGE.md e DELIVERY.md. Não marcar a entrega externa concluída sem URL verificável.
+

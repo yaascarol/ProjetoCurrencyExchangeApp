@@ -60,5 +60,6 @@ Valor fica no conversor; filtros/ordenação em HistoryData. Resultados são der
 ## Decisões e limites
 Moedas iguais bloqueadas. Valor de 0 a 1 trilhão, até oito casas decimais, ponto/vírgula decimal e sem separadores de milhar. CSV UTF-8 BOM, separador ponto e vírgula, decimal com vírgula, precisão recebida. Taxas diárias de referência sem impostos/tarifas/spread. Disponibilidade histórica varia por par/fonte; não se geram dados fictícios em falhas.
 
-Protótipos SVG importáveis não substituem o arquivo Figma. Repositório GitHub público e link Figma ainda dependem das contas do usuário. Branches locais main/dev e commits reais, sem reconstrução fictícia de aulas passadas.
+[Repositório público](https://github.com/yaascarol/ProjetoCurrencyExchangeApp) e [protótipos no Figma](https://www.figma.com/design/97gW3zxOPZzLn7NJOHaivw/HERMES-%E2%80%94-Currency-Exchange-%7C-Prot%C3%B3tipos). Branches main/dev publicadas e commits reais, sem reconstrução fictícia de aulas passadas.
+
 
