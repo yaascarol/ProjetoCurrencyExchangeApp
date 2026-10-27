@@ -1,0 +1,14 @@
+import {ResponsiveContainer,AreaChart,Area,XAxis,YAxis,Tooltip,CartesianGrid} from 'recharts';
+import {TrendingUp,TrendingDown} from 'lucide-react';
+import {PERIODS} from '../constants/periods.js';
+import {number,dateLabel} from '../utils/data.js';
+import QueryState from './QueryState.jsx';
+import s from './History.module.css';
+export default function History({pair,period,onPeriodChange,query}) {
+ const rows=query.data||[],first=rows[0],last=rows.at(-1);
+ const change=first&&last?(last.rate/first.rate-1)*100:0;
+ const min=rows.length?Math.min(...rows.map(r=>r.rate)):0,max=rows.length?Math.max(...rows.map(r=>r.rate)):0;
+ return <section className={s.panel} aria-labelledby="history-title"><div className={s.heading}><div><h2 id="history-title"><span>02</span> Histórico do par</h2><p>{pair.base} <span>→</span> {pair.quote}<span className={s.caption}> · Valor de 1 {pair.base} em {pair.quote}</span></p></div><div className={s.periods} role="group" aria-label="Período de análise">{PERIODS.map(p=><button key={p.id} aria-label={p.label} aria-pressed={period===p.id} className={period===p.id?s.active:''} onClick={()=>onPeriodChange(p.id)}>{p.short}</button>)}</div></div>
+ {query.status!=='success'?<QueryState status={query.status} message={query.error} onRetry={query.retry}/>:<><div className={s.summary}><strong>{number(last.rate,4)} <small>{pair.quote}</small></strong><span className={s.change}>{change>=0?<TrendingUp size={14}/>:<TrendingDown size={14}/>} {change>=0?'+':''}{number(change,2)}% <small>no período disponível</small></span></div><div className={s.chart} role="img" aria-label={`Histórico de ${pair.base} para ${pair.quote}. ${rows.length} cotações; mínima ${number(min)}, máxima ${number(max)}. Dados na tabela abaixo.`}><ResponsiveContainer width="100%" height="100%"><AreaChart data={rows} margin={{top:16,right:10,bottom:0,left:0}}><CartesianGrid vertical={false} stroke="#e5ebe7" strokeDasharray="3 4"/><XAxis dataKey="date" tickFormatter={v=>dateLabel(v,true)} minTickGap={48} tick={{fontSize:11,fill:'#6c7f76'}} axisLine={false} tickLine={false}/><YAxis domain={['auto','auto']} tickFormatter={v=>number(v,3)} width={62} tick={{fontSize:11,fill:'#6c7f76'}} axisLine={false} tickLine={false}/><Tooltip labelFormatter={v=>dateLabel(v)} formatter={v=>[number(v,6),pair.quote]} contentStyle={{borderRadius:8,border:'1px solid #dce4df',fontSize:13}}/><Area type="linear" dataKey="rate" stroke="#175F49" strokeWidth={2} fill="#DCECE3" fillOpacity={0.5} isAnimationActive={false} dot={rows.length===1} activeDot={{r:4,strokeWidth:3,stroke:'#fff'}}/></AreaChart></ResponsiveContainer></div><div className={s.stats}><span>Mínima <strong>{number(min)}</strong></span><span>Máxima <strong>{number(max)}</strong></span><span className={s.range}>{dateLabel(first.date)} — {dateLabel(last.date)}</span></div><p className={s.foot}>Datas efetivamente publicadas pela Frankfurter. Dias sem dados não são preenchidos.</p></>}
+ </section>;
+}
