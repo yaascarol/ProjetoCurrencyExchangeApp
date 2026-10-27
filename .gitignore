@@ -1,3 +1,4 @@
 .site-publish/
 *.tar.gz
 *.zip
+*.bundle
