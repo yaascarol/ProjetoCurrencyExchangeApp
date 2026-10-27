@@ -1,0 +1,1 @@
+export const PERIODS = [{id:'7d',label:'7 dias',short:'7D'},{id:'15d',label:'15 dias',short:'15D'},{id:'30d',label:'30 dias',short:'30D'},{id:'3m',label:'3 meses',short:'3M'},{id:'6m',label:'6 meses',short:'6M'},{id:'1y',label:'1 ano',short:'1A'},{id:'5y',label:'5 anos',short:'5A'},{id:'10y',label:'10 anos',short:'10A'}];
