@@ -1,0 +1,154 @@
+{
+  "info": {
+    "name": "HERMES — Frankfurter v2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Investigação de moedas, taxas, histórico, erros e dias sem publicação."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.frankfurter.dev/v2"
+    }
+  ],
+  "item": [
+    {
+      "name": "Moedas disponíveis",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/currencies"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Moedas com código e nome\",()=>{const d=pm.response.json();pm.expect(d).to.be.an(\"array\").that.is.not.empty;pm.expect(d[0]).to.have.property(\"iso_code\");pm.expect(d[0]).to.have.property(\"name\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Taxa EUR USD",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/rate/EUR/USD"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Par, data e taxa positiva\",()=>{const d=pm.response.json();pm.expect(d.base).to.eql(\"EUR\");pm.expect(d.quote).to.eql(\"USD\");pm.expect(d.rate).to.be.above(0);pm.expect(d.date).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Histórico maio 2024",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/rates?from=2024-05-01&to=2024-05-31&base=EUR&quotes=USD"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Série dentro do período\",()=>{const d=pm.response.json();pm.expect(d).to.be.an(\"array\").that.is.not.empty;d.forEach(r=>{pm.expect(r.date>=\"2024-05-01\"&&r.date<=\"2024-05-31\").to.be.true;pm.expect(r.rate).to.be.above(0);});});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Moeda inválida",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/rate/INVALID/USD"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Erro de cliente\",()=>pm.expect(pm.response.code).to.be.within(400,499));",
+              "pm.test(\"Mensagem de erro\",()=>pm.expect(pm.response.json()).to.have.property(\"message\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Data inválida",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/rates?date=invalid&base=EUR&quotes=USD"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Erro de cliente\",()=>pm.expect(pm.response.code).to.be.within(400,499));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cotação no domingo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/rate/EUR/USD?date=2024-05-05"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Data efetiva não posterior à solicitada\",()=>pm.expect(pm.response.json().date<=\"2024-05-05\").to.be.true);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Intervalo de fim de semana",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/rates?from=2024-05-04&to=2024-05-05&base=EUR&quotes=USD"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Resposta em lista\",()=>pm.expect(pm.response.json()).to.be.an(\"array\"));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
