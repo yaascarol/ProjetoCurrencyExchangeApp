@@ -30,3 +30,6 @@ Falhas HTTP/rede e lista vazia da API foram simuladas no serviço, não em modo 
 
 ## Revisão visual — 03/11/2026
 Oito testes Node aprovados e build de produção gerado. Conferência no navegador em 1280px e 390px, sem overflow horizontal da página; conversão de 10,50 USD mostrou 57,18 BRL com a taxa retornada 5,446; navegação Cotações chegou à tabela. Gráfico e tabela renderizados com dados reais. Não foi repetida nesta revisão toda a matriz funcional de 27/10.
+
+## Idiomas — 03/11/2026
+10 testes Node passaram, incluindo cobertura dos três dicionários, interpolação, formatos e cabeçalhos CSV. Build passou. No navegador: PT → EN preservou 10,50 e filtro mínimo 5.4; CSV baixado com quatro linhas conferidas e cabeçalhos em inglês; ES exibiu validação de valor negativo e estado vazio com exportação desabilitada; recarregar preservou espanhol.

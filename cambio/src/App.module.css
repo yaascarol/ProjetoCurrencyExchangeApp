@@ -67,3 +67,11 @@
   .footer { margin: 0 20px; flex-wrap: wrap; }
   .footer p { order: 3; width: 100%; margin: 0; }
 }
+.languages { display: flex; gap: 3px; border: 1px solid var(--line); padding: 3px; border-radius: 6px; }
+.languages button { background: transparent; border: 0; padding: 8px 10px; font-size: 12px; min-height: 36px; }
+.languages button[aria-pressed="true"] { background: var(--primary); color: white; }
+@media (max-width: 680px) {
+  .languages { order: 0; margin-left: auto; }
+  .nav { order: 1; }
+  .brand span { display: none; }
+}

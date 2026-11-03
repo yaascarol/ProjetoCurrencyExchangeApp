@@ -13,7 +13,7 @@ Valores ilustrativos identificados nos protótipos. A aplicação usa dados reai
 
 Páginas: 01 · Wireframes e protótipos (desktop/mobile em baixa e média fidelidade); 02 · Estados da interface (loading, erro e ausência de dados). Os SVGs foram importados como camadas editáveis. São protótipos visuais estáticos, sem conexões interativas. Evidências: [visão geral](screenshots/figma-overview.png) e [estados](screenshots/figma-states.png).
 
-Paleta: #172A24, #175F49, #F6F7F5, #FFFFFF, #DCE4DF, #DCECE3. Inter com fallback de sistema. Mobile empilha conversor, quebra filtros e permite rolagem somente da tabela quando necessária. Sem gradientes. Idiomas adicionais não foram implementados.
+Paleta: #172A24, #175F49, #F6F7F5, #FFFFFF, #DCE4DF, #DCECE3. Inter com fallback de sistema. Mobile empilha conversor, quebra filtros e permite rolagem somente da tabela quando necessária. Sem gradientes. PT/EN/ES foram adicionados à aplicação em 03/11/2026; o Figma anterior ainda não mostra o seletor.
 
 Capturas da aplicação: [desktop](screenshots/desktop.png), [mobile](screenshots/mobile.png). Não substituem o arquivo Figma.
 

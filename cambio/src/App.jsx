@@ -1,3 +1,4 @@
+import { useLanguage } from "./i18n/LanguageContext.jsx";
 import { useState } from "react";
 import { ArrowUpRight, Info, ArrowRightLeft } from "lucide-react";
 import Converter from "./components/Converter.jsx";
@@ -8,6 +9,8 @@ import useFrankfurter from "./hooks/useFrankfurter.js";
 import { periodRange } from "./utils/data.js";
 import s from "./App.module.css";
 export default function App() {
+  const { t, language, setLanguage } = useLanguage();
+
   const [pair, setPair] = useState({ base: "USD", quote: "BRL" }),
     [period, setPeriod] = useState("30d");
   const range = periodRange(period),
@@ -21,24 +24,27 @@ export default function App() {
   );
   return (
     <>
-      <a className={s.skip} href="#main">
-        Pular para conteúdo
-      </a>
+      <a className={s.skip} href="#main">{t("Pular para conteúdo")}</a>
       <header className={s.header}>
-        <a className={s.brand} href="#main" aria-label="Hermes início">
+        <a className={s.brand} href="#main" aria-label={t("Hermes início")}>
           <ArrowRightLeft size={24} aria-hidden="true" />
-          Hermes<span>Câmbio</span>
+          Hermes<span>{t("Câmbio")}</span>
         </a>
-        <nav className={s.nav} aria-label="Seções">
-          <a href="#converter-title">Conversor</a>
-          <a href="#history-title">Histórico</a>
-          <a href="#data-title">Cotações</a>
+        <nav className={s.nav} aria-label={t("Seções")}>
+          <a href="#converter-title">{t("Conversor")}</a>
+          <a href="#history-title">{t("Histórico")}</a>
+          <a href="#data-title">{t("Cotações")}</a>
         </nav>
+        <div className={s.languages} role="group" aria-label={t("Idioma")}>
+          {[["pt", "PT", "Português"], ["en", "EN", "English"], ["es", "ES", "Español"]].map(([code, label, name]) => (
+            <button key={code} type="button" lang={code} aria-label={name} aria-pressed={language === code} onClick={() => setLanguage(code)}>{label}</button>
+          ))}
+        </div>
       </header>
       <main id="main" className={s.main}>
         <div className={s.intro}>
-          <h1>Conversor de moedas</h1>
-          <p>Consulte o câmbio, compare datas e baixe as cotações.</p>
+          <h1>{t("Conversor de moedas")}</h1>
+          <p>{t("Consulte o câmbio, compare datas e baixe as cotações.")}</p>
         </div>
         {currencies.status !== "success" && (
           <div className={s.globalState}>
@@ -71,20 +77,14 @@ export default function App() {
               />
             </>
           ) : (
-            <section className={s.same}>
-              Escolha moedas diferentes para consultar o histórico.
-            </section>
+            <section className={s.same}>{t("Escolha moedas diferentes para consultar o histórico.")}</section>
           )}
         </div>
         <aside className={s.info}>
           <Info size={18} aria-hidden="true" />
           <div>
-            <strong>Sobre as cotações</strong>
-            <p>
-              As taxas são atualizadas diariamente pelas fontes oficiais
-              reunidas pela Frankfurter. A data exibida é a da cotação, não a do
-              acesso.
-            </p>
+            <strong>{t("Sobre as cotações")}</strong>
+            <p>{t("As taxas são atualizadas diariamente pelas fontes oficiais reunidas pela Frankfurter. A data exibida é a da cotação, não a do acesso.")}</p>
           </div>
         </aside>
       </main>
@@ -92,9 +92,8 @@ export default function App() {
         <span>
           Hermes <small>© {new Date().getFullYear()}</small>
         </span>
-        <p>Projeto educacional · React & Frankfurter</p>
-        <a href="https://frankfurter.dev/" target="_blank" rel="noreferrer">
-          Sobre os dados <ArrowUpRight size={13} />
+        <p>{t("Projeto educacional · React & Frankfurter")}</p>
+        <a href="https://frankfurter.dev/" target="_blank" rel="noreferrer">{t("Sobre os dados")}<ArrowUpRight size={13} />
         </a>
       </footer>
     </>

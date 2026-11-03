@@ -1,3 +1,4 @@
+import { translate, locales } from "../i18n/messages.js";
 export const EMPTY_FILTERS = { from: "", to: "", min: "", max: "" };
 export function todayISO(now = new Date()) {
   return new Intl.DateTimeFormat("en-CA", {
@@ -76,18 +77,18 @@ export function filterAndSort(
       );
     });
 }
-export function toCsv(rows) {
+export function toCsv(rows, language = "pt") {
   if (!rows.length) throw new Error("Não há registros para exportar.");
   const cell = (v) => '"' + String(v).replaceAll('"', '""') + '"';
   return (
     "\uFEFF" +
     [
-      ["Data", "Origem", "Destino", "Cotação"],
+      ["Data", "Origem", "Destino", "Cotação"].map((key) => translate(language, key)),
       ...rows.map((r) => [
         r.date,
         r.base,
         r.quote,
-        String(r.rate).replace(".", ","),
+        new Intl.NumberFormat(locales[language] || locales.pt, { useGrouping: false, maximumFractionDigits: 20 }).format(r.rate),
       ]),
     ]
       .map((row) => row.map(cell).join(";"))
@@ -99,9 +100,9 @@ export function csvFilename(rows) {
   const dates = rows.map((r) => r.date).sort();
   return `hermes_${rows[0].base}_${rows[0].quote}_${dates[0]}_${dates.at(-1)}.csv`;
 }
-export function downloadCsv(rows) {
+export function downloadCsv(rows, language = "pt") {
   const url = URL.createObjectURL(
-    new Blob([toCsv(rows)], { type: "text/csv;charset=utf-8;" }),
+    new Blob([toCsv(rows, language)], { type: "text/csv;charset=utf-8;" }),
   );
   const a = document.createElement("a");
   a.href = url;
@@ -111,19 +112,18 @@ export function downloadCsv(rows) {
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-export const number = (n, digits = 4) =>
-  new Intl.NumberFormat("pt-BR", {
+export const number = (n, digits = 4, locale = "pt-BR") =>
+  new Intl.NumberFormat(locale, {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,
   }).format(n);
-export const dateLabel = (date, short = false) =>
+export const dateLabel = (date, short = false, locale = "pt-BR") =>
   new Intl.DateTimeFormat(
-    "pt-BR",
+    locale,
     short
       ? { day: "2-digit", month: "short", timeZone: "UTC" }
       : { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" },
   ).format(new Date(date + "T12:00:00Z"));
-export const money = (n, currency) =>
-  new Intl.NumberFormat("pt-BR", { style: "currency", currency }).format(n);
-const names = new Intl.DisplayNames(["pt-BR"], { type: "currency" });
-export const currencyName = (code) => names.of(code) || code;
+export const money = (n, currency, locale = "pt-BR") =>
+  new Intl.NumberFormat(locale, { style: "currency", currency }).format(n);
+export const currencyName = (code, locale = "pt-BR") => new Intl.DisplayNames([locale], { type: "currency" }).of(code) || code;

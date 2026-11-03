@@ -1,3 +1,4 @@
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -9,10 +10,11 @@ import {
 } from "recharts";
 import { TrendingUp, TrendingDown } from "lucide-react";
 import { PERIODS } from "../constants/periods.js";
-import { number, dateLabel } from "../utils/data.js";
 import QueryState from "./QueryState.jsx";
 import s from "./History.module.css";
 export default function History({ pair, period, onPeriodChange, query }) {
+  const { t, language, number, dateLabel } = useLanguage();
+
   const rows = query.data || [],
     first = rows[0],
     last = rows.at(-1);
@@ -23,27 +25,25 @@ export default function History({ pair, period, onPeriodChange, query }) {
     <section className={s.panel} aria-labelledby="history-title">
       <div className={s.heading}>
         <div>
-          <h2 id="history-title">
-            Histórico de cotações
-          </h2>
+          <h2 id="history-title">{t("Histórico de cotações")}</h2>
           <p>
             {pair.base} <span>→</span> {pair.quote}
             <span className={s.caption}>
               {" "}
-              · Valor de 1 {pair.base} em {pair.quote}
+              · {t("valueOf", pair)}
             </span>
           </p>
         </div>
-        <div className={s.periods} role="group" aria-label="Período de análise">
+        <div className={s.periods} role="group" aria-label={t("Período de análise")}>
           {PERIODS.map((p) => (
             <button
               key={p.id}
-              aria-label={p.label}
+              aria-label={t(p.label)}
               aria-pressed={period === p.id}
               className={period === p.id ? s.active : ""}
               onClick={() => onPeriodChange(p.id)}
             >
-              {p.short}
+              {language === "en" ? p.short.replace("A", "Y") : p.short}
             </button>
           ))}
         </div>
@@ -67,13 +67,13 @@ export default function History({ pair, period, onPeriodChange, query }) {
                 <TrendingDown size={14} />
               )}{" "}
               {change >= 0 ? "+" : ""}
-              {number(change, 2)}% <small>no período disponível</small>
+              {number(change, 2)}% <small>{t("no período disponível")}</small>
             </span>
           </div>
           <div
             className={s.chart}
             role="img"
-            aria-label={`Histórico de ${pair.base} para ${pair.quote}. ${rows.length} cotações; mínima ${number(min)}, máxima ${number(max)}. Dados na tabela abaixo.`}
+            aria-label={t("chartDescription", { ...pair, count: rows.length, min: number(min), max: number(max) })}
           >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart
@@ -125,20 +125,15 @@ export default function History({ pair, period, onPeriodChange, query }) {
             </ResponsiveContainer>
           </div>
           <div className={s.stats}>
-            <span>
-              Mínima <strong>{number(min)}</strong>
+            <span>{t("Mínima")}<strong>{number(min)}</strong>
             </span>
-            <span>
-              Máxima <strong>{number(max)}</strong>
+            <span>{t("Máxima")}<strong>{number(max)}</strong>
             </span>
             <span className={s.range}>
               {dateLabel(first.date)} — {dateLabel(last.date)}
             </span>
           </div>
-          <p className={s.foot}>
-            Datas efetivamente publicadas pela Frankfurter. Dias sem dados não
-            são preenchidos.
-          </p>
+          <p className={s.foot}>{t("Datas efetivamente publicadas pela Frankfurter. Dias sem dados não são preenchidos.")}</p>
         </>
       )}
     </section>

@@ -22,3 +22,6 @@ Filtros usam condição E e limites inclusivos. sort opera em novo array. map re
 
 Arquitetura simplificada em relação ao planejamento inicial; não há componentes previstos listados como já implementados.
 
+
+## Idiomas — 03/11/2026
+LanguageProvider (`src/i18n/LanguageContext.jsx`) envolve App e mantém o idioma em useState. useLanguage fornece tradução e formatação aos componentes. Um useEffect atualiza o atributo lang, título e localStorage, com fallback quando armazenamento é bloqueado. Dicionários em messages.js. O seletor vive em App.jsx e usa App.module.css. A preferência não faz parte das dependências de consulta da API.

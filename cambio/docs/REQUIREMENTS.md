@@ -182,7 +182,7 @@ Registrar requisição, parâmetros, status, amostra do JSON e interpretação. 
 
 ## Entregas e pendências
 
-Aplicação, build, documentação, Collection, testes e protótipos SVG estão disponíveis. Repositório público GitHub e arquivo/link Figma dependem de acesso às contas. Conferir DELIVERY.md, FIGMA.md e FUNCTION_TESTS.md para limites da validação. Idiomas adicionais não implementados.
+Aplicação, build, documentação, Collection, testes e protótipos SVG estão disponíveis. Repositório público GitHub e arquivo/link Figma dependem de acesso às contas. Conferir DELIVERY.md, FIGMA.md e FUNCTION_TESTS.md para limites da validação. PT/EN/ES implementados em 03/11/2026.
 
 ## Referências
 
@@ -190,3 +190,6 @@ Aplicação, build, documentação, Collection, testes e protótipos SVG estão 
 - Documentação oficial: https://frankfurter.dev/
 - Link do Notion fornecido, ainda sem leitura bem-sucedida: https://deluxe-blue-bc1.notion.site/Projeto-01-Currency-Exchange-App-3e4dfca74d8d819ebfeedbdbe661d76e
 
+
+## Requisito adicional — 03/11/2026
+Seletor PT/EN/ES no cabeçalho. Traduzir interface, acessibilidade, estados, nomes de moedas, períodos e CSV; formatar números e datas pelo idioma. Manter códigos ISO das moedas e datas ISO no CSV. Trocar idioma preserva filtros/par/valor. Persistência local quando disponível; fallback português.
