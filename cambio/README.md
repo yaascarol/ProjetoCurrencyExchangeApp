@@ -53,7 +53,6 @@ Valor fica no conversor; filtros/ordenação em HistoryData. Resultados são der
 - [Testes](docs/FUNCTION_TESTS.md)
 - [Collection](docs/postman/Frankfurter.postman_collection.json)
 - [Resultado Newman](docs/postman/results.json)
-- [Uso de IA](docs/AI_USAGE.md)
 - [Board](docs/DEVELOPMENT_BOARD.md)
 - [Entrega](docs/DELIVERY.md)
 
