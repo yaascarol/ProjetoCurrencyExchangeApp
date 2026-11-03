@@ -4,7 +4,9 @@ SPA React para conversão, histórico e exportação de moedas usando Frankfurte
 
 Execução local: siga os comandos abaixo. Hospedagem não é uma exigência explícita do enunciado recebido. É necessário acesso à internet para consultar a API. A prévia hospedada anteriormente corresponde ao visual de 27/10/2026.
 
-![Desktop](docs/screenshots/redesign-desktop.png)
+![Interface com idiomas, antes do refinamento final](docs/screenshots/languages-desktop.png)
+
+A captura registra a revisão anterior ao ajuste final de espaçamento e cabeçalho. O código atual utiliza o nome Currency Exchange App.
 
 ## Funcionalidades
 Conversão automática, seleção/inversão de moedas, taxa e data efetiva; gráfico nos oito períodos; tabela paginada; filtros inclusivos por datas e cotação, combinados; ordenação por data/cotação; contagem; limpeza; CSV de todos os registros filtrados; loading, erro, nova tentativa e vazio. Interface responsiva em português, inglês e espanhol.

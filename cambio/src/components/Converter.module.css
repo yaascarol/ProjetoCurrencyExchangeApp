@@ -1,9 +1,9 @@
 .panel {
-  border-top: 3px solid var(--primary);
   background: white;
   border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 28px 32px;
+  border-radius: 14px;
+  padding: 30px 32px;
+  box-shadow: 0 3px 12px #342b2a06;
 }
 .top {
   display: flex;
@@ -29,7 +29,7 @@
   align-items: center;
   font-size: 12px;
   color: var(--primary);
-  background: #f5e9e9;
+  background: transparent;
   padding: 7px 10px;
   border-radius: 4px;
 }
@@ -48,12 +48,12 @@
 .field {
   background: white;
   border: 1px solid var(--line);
-  padding: 20px 24px;
-  border-radius: 8px;
+  padding: 24px;
+  border-radius: 10px;
   min-width: 0;
 }
 .result {
-  background: #f7eded;
+  background: #f8eef0;
   border-color: #dfc4cb;
 }
 .selectLabel > span {
@@ -65,7 +65,8 @@
 .selectLabel select {
   background: transparent;
   border: 0;
-  padding: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 6px 0 14px;
   width: 100%;
   font-size: 16px;
   font-weight: 600;
@@ -90,9 +91,10 @@
   background: transparent;
   border: 0;
   color: var(--ink);
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 600;
   letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
   padding: 0;
 }
 .value > span {
@@ -100,14 +102,17 @@
   color: var(--muted);
 }
 .value output {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 600;
   letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
   color: var(--primary);
   overflow-wrap: anywhere;
 }
 .swap {
-  border-radius: 5px;
+  color: var(--primary);
+  border-color: #dac3c9;
+  border-radius: 50%;
   width: 44px;
   height: 44px;
   display: grid;
@@ -121,7 +126,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 12px;
 }
 .bottom p,
@@ -148,7 +153,8 @@
 .note {
   font-size: 12px;
   color: var(--muted);
-  margin: 14px 0 0;
+  margin: 16px 0 0;
+  line-height: 1.6;
 }
 .error {
   font-size: 13px;

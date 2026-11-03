@@ -33,3 +33,6 @@ Oito testes Node aprovados e build de produção gerado. Conferência no navegad
 
 ## Idiomas — 03/11/2026
 10 testes Node passaram, incluindo cobertura dos três dicionários, interpolação, formatos e cabeçalhos CSV. Build passou. No navegador: PT → EN preservou 10,50 e filtro mínimo 5.4; CSV baixado com quatro linhas conferidas e cabeçalhos em inglês; ES exibiu validação de valor negativo e estado vazio com exportação desabilitada; recarregar preservou espanhol.
+
+## Refinamento final — 03/11/2026
+Cabeçalho, tipografia, campos e espaçamento refinados, mantendo vinho e bege. Os 10 testes Node e o build passaram; git diff --check não apontou erros. A conferência visual desta última revisão não foi executada: a revisão automática de aprovação do navegador falhou por limite de uso. As capturas anteriores não são evidência visual deste refinamento.

@@ -20,3 +20,6 @@ A pedido do usuário, Codex implementou PT/EN/ES com Context, custom hook, dicio
 
 ## Nome — 03/11/2026
 A pedido do usuário, a aplicação passou a se chamar Currency Exchange App. Interface, título, pacote, CSV e documentação atualizados. Registros de testes, backups e protótipos antigos conservam o nome usado na época. A chave local de idioma foi preservada para manter a preferência já salva.
+
+## Refinamento e publicação — 03/11/2026
+A pedido do usuário, Codex refinou o visual e preparou o envio ao GitHub com novo nome e PT/EN/ES. Ajustes em CSS Modules, sem novas dependências. Limite da verificação visual registrado em FUNCTION_TESTS.md.
