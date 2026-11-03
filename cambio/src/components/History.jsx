@@ -24,7 +24,7 @@ export default function History({ pair, period, onPeriodChange, query }) {
       <div className={s.heading}>
         <div>
           <h2 id="history-title">
-            <span>02</span> Histórico do par
+            Histórico de cotações
           </h2>
           <p>
             {pair.base} <span>→</span> {pair.quote}
@@ -82,14 +82,14 @@ export default function History({ pair, period, onPeriodChange, query }) {
               >
                 <CartesianGrid
                   vertical={false}
-                  stroke="#e5ebe7"
+                  stroke="#e8dfd5"
                   strokeDasharray="3 4"
                 />
                 <XAxis
                   dataKey="date"
                   tickFormatter={(v) => dateLabel(v, true)}
                   minTickGap={48}
-                  tick={{ fontSize: 11, fill: "#6c7f76" }}
+                  tick={{ fontSize: 11, fill: "#75675f" }}
                   axisLine={false}
                   tickLine={false}
                 />
@@ -97,7 +97,7 @@ export default function History({ pair, period, onPeriodChange, query }) {
                   domain={["auto", "auto"]}
                   tickFormatter={(v) => number(v, 3)}
                   width={62}
-                  tick={{ fontSize: 11, fill: "#6c7f76" }}
+                  tick={{ fontSize: 11, fill: "#75675f" }}
                   axisLine={false}
                   tickLine={false}
                 />
@@ -106,16 +106,16 @@ export default function History({ pair, period, onPeriodChange, query }) {
                   formatter={(v) => [number(v, 6), pair.quote]}
                   contentStyle={{
                     borderRadius: 8,
-                    border: "1px solid #dce4df",
+                    border: "1px solid #ded3c8",
                     fontSize: 13,
                   }}
                 />
                 <Area
                   type="linear"
                   dataKey="rate"
-                  stroke="#175F49"
+                  stroke="var(--primary)"
                   strokeWidth={2}
-                  fill="#DCECE3"
+                  fill="#ead1d8"
                   fillOpacity={0.5}
                   isAnimationActive={false}
                   dot={rows.length === 1}

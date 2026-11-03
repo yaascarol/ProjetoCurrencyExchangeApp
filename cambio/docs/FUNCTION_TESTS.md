@@ -27,3 +27,6 @@ Configurado JSX automático no Vite após detectar React is not defined. Adicion
 ## Limites
 Falhas HTTP/rede e lista vazia da API foram simuladas no serviço, não em modo offline do navegador. Vazio por filtro e loading foram verificados na interface. Instalação executada pelo assistente; conferência por segunda pessoa pendente. Build executado; isso não comprova hospedagem pública.
 
+
+## Revisão visual — 03/11/2026
+Oito testes Node aprovados e build de produção gerado. Conferência no navegador em 1280px e 390px, sem overflow horizontal da página; conversão de 10,50 USD mostrou 57,18 BRL com a taxa retornada 5,446; navegação Cotações chegou à tabela. Gráfico e tabela renderizados com dados reais. Não foi repetida nesta revisão toda a matriz funcional de 27/10.

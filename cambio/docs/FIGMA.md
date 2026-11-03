@@ -18,3 +18,6 @@ Paleta: #172A24, #175F49, #F6F7F5, #FFFFFF, #DCE4DF, #DCECE3. Inter com fallback
 Capturas da aplicação: [desktop](screenshots/desktop.png), [mobile](screenshots/mobile.png). Não substituem o arquivo Figma.
 
 
+
+## Revisão visual — 03/11/2026
+A aplicação local agora usa vinho (#7D3046), bege (#F6F1E9), texto marrom (#342B2A) e superfícies brancas. Cabeçalho com navegação por seções, título Georgia e textos Segoe UI/sans-serif. O arquivo Figma acima registra a primeira versão; ainda não foi sincronizado com esta revisão. Evidências atuais: [desktop](screenshots/redesign-desktop.png) e [mobile](screenshots/redesign-mobile.png).

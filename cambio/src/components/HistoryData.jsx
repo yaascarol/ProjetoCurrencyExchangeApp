@@ -49,9 +49,9 @@ export default function HistoryData({ query }) {
       <div className={s.heading}>
         <div>
           <h2 id="data-title">
-            <span>03</span> Explore os dados
+             Tabela de cotações
           </h2>
-          <p>Filtre, compare e leve sua análise com você.</p>
+          <p>Filtre os registros por data ou valor e exporte em CSV.</p>
         </div>
         <button
           className={s.export}

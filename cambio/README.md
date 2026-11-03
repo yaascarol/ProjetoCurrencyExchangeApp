@@ -2,9 +2,9 @@
 
 SPA React para conversão, histórico e exportação de moedas usando Frankfurter v2. Reconstruída em 27/10/2026 após perda dos arquivos anteriores, com assistência de IA. Os commits registram esta reconstrução.
 
-[Prévia publicada — acesso privado](https://cambio-currency-lab-271026.hazy-cow-7421.chatgpt.site).
+Execução local: siga os comandos abaixo. Hospedagem não é uma exigência explícita do enunciado recebido. É necessário acesso à internet para consultar a API. A prévia hospedada anteriormente corresponde ao visual de 27/10/2026.
 
-![Desktop](docs/screenshots/desktop.png)
+![Desktop](docs/screenshots/redesign-desktop.png)
 
 ## Funcionalidades
 Conversão automática, seleção/inversão de moedas, taxa e data efetiva; gráfico nos oito períodos; tabela paginada; filtros inclusivos por datas e cotação, combinados; ordenação por data/cotação; contagem; limpeza; CSV de todos os registros filtrados; loading, erro, nova tentativa e vazio. Interface responsiva em português.

@@ -1,7 +1,8 @@
 .panel {
+  border-top: 3px solid var(--primary);
   background: white;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 28px 32px;
 }
 .top {
@@ -26,17 +27,17 @@
   display: flex;
   gap: 7px;
   align-items: center;
-  font-size: 11px;
-  color: var(--forest);
-  background: #edf5f0;
+  font-size: 12px;
+  color: var(--primary);
+  background: #f5e9e9;
   padding: 7px 10px;
-  border-radius: 20px;
+  border-radius: 4px;
 }
 .tag > span {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--forest);
+  background: var(--primary);
 }
 .fields {
   display: grid;
@@ -45,15 +46,15 @@
   gap: 12px;
 }
 .field {
-  background: var(--paper);
+  background: white;
   border: 1px solid var(--line);
   padding: 20px 24px;
   border-radius: 8px;
   min-width: 0;
 }
 .result {
-  background: #f0f6f2;
-  border-color: #d3e4d9;
+  background: #f7eded;
+  border-color: #dfc4cb;
 }
 .selectLabel > span {
   display: block;
@@ -102,11 +103,11 @@
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -1px;
-  color: var(--forest);
+  color: var(--primary);
   overflow-wrap: anywhere;
 }
 .swap {
-  border-radius: 50%;
+  border-radius: 5px;
   width: 44px;
   height: 44px;
   display: grid;
@@ -141,11 +142,11 @@
   white-space: nowrap;
 }
 .divider {
-  color: #b2c0b9;
+  color: #b9a99e;
   margin: 0 5px;
 }
 .note {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   margin: 14px 0 0;
 }

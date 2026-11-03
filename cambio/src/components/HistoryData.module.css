@@ -1,7 +1,7 @@
 .panel {
   background: white;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
 }
 .heading {
@@ -32,9 +32,9 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  background: var(--ink);
+  background: var(--primary);
   color: white;
-  border-color: var(--ink);
+  border-color: var(--primary);
   font-size: 12px;
   padding: 11px 16px;
   white-space: nowrap;
@@ -46,7 +46,7 @@
   padding: 0 32px 24px;
 }
 .filters label {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
   flex: 1;
   min-width: 0;
@@ -75,18 +75,18 @@
   gap: 6px;
   padding: 10px 0;
   border: 0;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   background: transparent;
 }
 .count {
   display: flex;
   justify-content: space-between;
-  background: #fafbf9;
+  background: #f7f2eb;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 12px 32px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 .count strong {
@@ -104,7 +104,7 @@
 }
 .scroll th {
   text-align: left;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.3px;
   text-transform: uppercase;
@@ -124,23 +124,23 @@
 }
 .scroll td {
   padding: 13px 32px;
-  border-bottom: 1px solid #edf0ed;
+  border-bottom: 1px solid #eee5db;
   font-variant-numeric: tabular-nums;
 }
 .scroll tr:last-child td {
   border-bottom: 0;
 }
 .scroll tbody tr:hover {
-  background: #fafcf9;
+  background: #fcf8f2;
 }
 .scroll .numeric {
   text-align: right;
 }
 .code {
-  background: #f1f4f1;
+  background: #f1e9df;
   padding: 4px 7px;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.6px;
 }
 .pagination {
@@ -150,7 +150,7 @@
   border-top: 1px solid var(--line);
   padding: 15px 32px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 .pagination > div {
   display: flex;
@@ -172,7 +172,7 @@
 .notice {
   font-size: 12px;
   padding: 0 32px;
-  color: var(--forest);
+  color: var(--primary);
 }
 @media (max-width: 850px) {
   .filters {

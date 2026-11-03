@@ -11,3 +11,6 @@ Validações: 8 testes locais; 13 assertions de API; oito períodos; desktop/mob
 
 Não foram inventados testes no Postman gráfico nem links GitHub/Figma. O aluno deve revisar e conseguir explicar estados, props, efeitos, cancelamento, multiplicação, filter/sort e CSV. A assistência não comprova aprendizado ou autoria exclusivamente humana.
 
+
+## 03/11/2026 — Revisão visual
+A pedido do usuário, a IA adaptou o projeto existente para a paleta clara vinho e bege escolhida por ele, simplificou textos e cabeçalho e ajustou CSS Modules. Os dois ZIPs enviados foram consultados como referências; código, imagens e identidade dos outros projetos não foram incorporados. A revisão não altera o registro de assistência de IA.

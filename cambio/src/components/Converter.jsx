@@ -45,7 +45,7 @@ export default function Converter({ pair, onPairChange, currencies, query }) {
     <section className={s.panel} aria-labelledby="converter-title">
       <div className={s.top}>
         <h2 id="converter-title">
-          <span>01</span> Conversor de moedas
+          Faça uma conversão
         </h2>
         <span className={s.tag}>
           <span /> Taxas de referência
@@ -61,7 +61,7 @@ export default function Converter({ pair, onPairChange, currencies, query }) {
             disabled={!currencies.length}
           />
           <label className={s.amountLabel} htmlFor="amount">
-            Você envia
+            Valor a converter
           </label>
           <div className={s.value}>
             <input
@@ -91,7 +91,7 @@ export default function Converter({ pair, onPairChange, currencies, query }) {
             currencies={currencies}
             disabled={!currencies.length}
           />
-          <span className={s.amountLabel}>Você recebe</span>
+          <span className={s.amountLabel}>Valor convertido</span>
           <div className={s.value} aria-live="polite">
             <output>
               {success && valid

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, Globe2, ArrowRight } from "lucide-react";
+import { ArrowUpRight, Info, ArrowRightLeft } from "lucide-react";
 import Converter from "./components/Converter.jsx";
 import History from "./components/History.jsx";
 import HistoryData from "./components/HistoryData.jsx";
@@ -26,33 +26,19 @@ export default function App() {
       </a>
       <header className={s.header}>
         <a className={s.brand} href="#main" aria-label="Hermes início">
-          <span>
-            <ArrowUpRight size={25} />
-          </span>
-          HERMES
-          <span className={s.brandDivider} />
-          <small>CURRENCY EXCHANGE</small>
+          <ArrowRightLeft size={24} aria-hidden="true" />
+          Hermes<span>Câmbio</span>
         </a>
-        <span className={s.headerNote}>
-          <Globe2 size={14} /> Uma perspectiva global.
-        </span>
+        <nav className={s.nav} aria-label="Seções">
+          <a href="#converter-title">Conversor</a>
+          <a href="#history-title">Histórico</a>
+          <a href="#data-title">Cotações</a>
+        </nav>
       </header>
       <main id="main" className={s.main}>
         <div className={s.intro}>
-          <div>
-            <p className={s.eyebrow}>MOEDAS SEM FRONTEIRAS</p>
-            <h1>
-              Clareza para cada conversão<span>.</span>
-            </h1>
-            <p className={s.description}>
-              Converta valores, acompanhe tendências e explore o mundo em outras
-              moedas.
-            </p>
-          </div>
-          <div className={s.source}>
-            <span className={s.liveDot} /> Dados da Frankfurter{" "}
-            <ArrowRight size={13} />
-          </div>
+          <h1>Conversor de moedas</h1>
+          <p>Consulte o câmbio, compare datas e baixe as cotações.</p>
         </div>
         {currencies.status !== "success" && (
           <div className={s.globalState}>
@@ -91,9 +77,9 @@ export default function App() {
           )}
         </div>
         <aside className={s.info}>
-          <Globe2 size={18} />
+          <Info size={18} aria-hidden="true" />
           <div>
-            <strong>Informação que aproxima você do mundo.</strong>
+            <strong>Sobre as cotações</strong>
             <p>
               As taxas são atualizadas diariamente pelas fontes oficiais
               reunidas pela Frankfurter. A data exibida é a da cotação, não a do
@@ -104,7 +90,7 @@ export default function App() {
       </main>
       <footer className={s.footer}>
         <span>
-          HERMES <small>© {new Date().getFullYear()}</small>
+          Hermes <small>© {new Date().getFullYear()}</small>
         </span>
         <p>Projeto educacional · React & Frankfurter</p>
         <a href="https://frankfurter.dev/" target="_blank" rel="noreferrer">
