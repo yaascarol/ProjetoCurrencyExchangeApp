@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "HERMES — Frankfurter v2",
+    "name": "Currency Exchange App — Frankfurter v2",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": "Investigação de moedas, taxas, histórico, erros e dias sem publicação."
   },

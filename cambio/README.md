@@ -1,4 +1,4 @@
-# HERMES — Currency Exchange
+# Currency Exchange App
 
 SPA React para conversão, histórico e exportação de moedas usando Frankfurter v2. Reconstruída em 27/10/2026 após perda dos arquivos anteriores, com assistência de IA. Os commits registram esta reconstrução.
 

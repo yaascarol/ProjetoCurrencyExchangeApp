@@ -1,4 +1,4 @@
-# HERMES — Currency Exchange
+# Currency Exchange App
 
 O projeto React está na pasta [cambio](cambio/README.md).
 

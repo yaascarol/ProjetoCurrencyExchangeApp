@@ -11,7 +11,7 @@ export function LanguageProvider({ children }) {
   const locale = locales[language];
   useEffect(() => {
     document.documentElement.lang = locale;
-    document.title = `Hermes — ${translate(language, "Conversor de moedas")}`;
+    document.title = "Currency Exchange App";
     try { localStorage.setItem("hermes-language", language); } catch { /* Storage may be disabled. */ }
   }, [language, locale]);
   const t = (key, values) => translate(language, key, values);

@@ -98,7 +98,7 @@ export function toCsv(rows, language = "pt") {
 export function csvFilename(rows) {
   if (!rows.length) throw new Error("Não há registros para exportar.");
   const dates = rows.map((r) => r.date).sort();
-  return `hermes_${rows[0].base}_${rows[0].quote}_${dates[0]}_${dates.at(-1)}.csv`;
+  return `currency_exchange_app_${rows[0].base}_${rows[0].quote}_${dates[0]}_${dates.at(-1)}.csv`;
 }
 export function downloadCsv(rows, language = "pt") {
   const url = URL.createObjectURL(

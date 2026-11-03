@@ -46,7 +46,7 @@ Conversor com seleção e inversão de moedas, histórico com oito períodos, gr
 - RN08: exportar os dados derivados dos filtros e da ordenação, sem uma segunda consulta que possa produzir resultados diferentes.
 - RN09: bloquear conversão e histórico quando origem e destino forem iguais.
 - RN10: combinar filtros com condição lógica E; cotação mínima não pode ser maior que a máxima. Limites são inclusivos.
-- RN11: gerar nome identificável para o CSV; formato: `hermes_USD_BRL_2026-10-01_2026-10-27.csv`, usando o par e as datas correspondentes aos dados exportados.
+- RN11: gerar nome identificável para o CSV; formato: `currency_exchange_app_USD_BRL_2026-10-01_2026-10-27.csv`, usando o par e as datas correspondentes aos dados exportados.
 - RN12: nunca habilitar exportação de um conjunto vazio. CSV UTF-8 com BOM, ponto e vírgula como separador, vírgula decimal e aspas escapadas; sem arredondar a taxa recebida.
 
 ## Fora do escopo

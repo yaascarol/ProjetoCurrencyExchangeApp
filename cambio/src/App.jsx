@@ -26,9 +26,9 @@ export default function App() {
     <>
       <a className={s.skip} href="#main">{t("Pular para conteúdo")}</a>
       <header className={s.header}>
-        <a className={s.brand} href="#main" aria-label={t("Hermes início")}>
+        <a className={s.brand} href="#main" aria-label={t("Currency Exchange App início")}>
           <ArrowRightLeft size={24} aria-hidden="true" />
-          Hermes<span>{t("Câmbio")}</span>
+          Currency Exchange App
         </a>
         <nav className={s.nav} aria-label={t("Seções")}>
           <a href="#converter-title">{t("Conversor")}</a>
@@ -90,7 +90,7 @@ export default function App() {
       </main>
       <footer className={s.footer}>
         <span>
-          Hermes <small>© {new Date().getFullYear()}</small>
+          Currency Exchange App <small>© {new Date().getFullYear()}</small>
         </span>
         <p>{t("Projeto educacional · React & Frankfurter")}</p>
         <a href="https://frankfurter.dev/" target="_blank" rel="noreferrer">{t("Sobre os dados")}<ArrowUpRight size={13} />

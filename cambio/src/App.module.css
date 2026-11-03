@@ -75,3 +75,8 @@
   .nav { order: 1; }
   .brand span { display: none; }
 }
+.brand { font-size: 22px; }
+@media (max-width: 680px) {
+  .brand { width: 100%; font-size: 21px; }
+  .languages { order: 2; margin-left: 0; }
+}

@@ -78,7 +78,7 @@ test("CSV contains only selected rows with header BOM and escaping", () => {
   assert.ok(csv.includes('"1,3"'));
   assert.equal(
     csvFilename(selected),
-    "hermes_EUR_USD_2024-05-02_2024-05-03.csv",
+    "currency_exchange_app_EUR_USD_2024-05-02_2024-05-03.csv",
   );
   assert.throws(() => toCsv([]));
   assert.ok(toCsv([{ ...rows[0], base: 'A"B' }]).includes('"A""B"'));

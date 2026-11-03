@@ -4,10 +4,10 @@ export const messages = {
     "en": "Skip to content",
     "es": "Saltar al contenido"
   },
-  "Hermes início": {
-    "pt": "Hermes início",
-    "en": "Hermes home",
-    "es": "Hermes inicio"
+  "Currency Exchange App início": {
+    "pt": "Currency Exchange App início",
+    "en": "Currency Exchange App home",
+    "es": "Currency Exchange App inicio"
   },
   "Câmbio": {
     "pt": "Câmbio",
